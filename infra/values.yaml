@@ -1,0 +1,17 @@
+# ----------------
+# RABBITMQ
+# ----------------
+rabbitmq:
+  auth:
+    username: admin
+    password: password
+    erlangCookie: cookie
+  metrics:
+    enabled: true
+  persistence:
+    enabled: true
+    size: 20Gi
+  ingress:
+    enabled: true
+    hostname: rabbitmq.docker.localhost
+    path: /

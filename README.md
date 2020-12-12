@@ -1,0 +1,14 @@
+[![Moleculer logo](./banner-moleculer.png)](https://moleculer.services/)
+
+### Cluster "kind"
+
+```sh
+# setup
+$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+$ chmod +x ./kind
+# after created
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+```
+
+* https://kind.sigs.k8s.io/docs/user/quick-start/
+* https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
