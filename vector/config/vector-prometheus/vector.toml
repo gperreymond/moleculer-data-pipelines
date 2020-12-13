@@ -1,4 +1,13 @@
-[sources.prometheus_id]
+[sources.prometheus_rabbitmq]
   type = "prometheus_scrape" # required
   endpoints = ["http://rabbitmq.moleculer:9419/metrics"] # required
   scrape_interval_secs = 15 # optional, default, seconds
+
+[sinks.console]
+  # General
+  type = "console" # required
+  inputs = ["prometheus_rabbitmq"] # required
+  target = "stdout" # optional, default
+
+  # Encoding
+  encoding.codec = "json" # required
