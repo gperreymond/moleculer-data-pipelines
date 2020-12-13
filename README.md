@@ -10,7 +10,3 @@ $ chmod +x ./kind
 
 * https://kind.sigs.k8s.io/docs/user/quick-start/
 * https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
-
-### Argocd
-
-* Start with disable auth (not production ready of course)
