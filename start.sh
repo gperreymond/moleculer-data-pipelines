@@ -7,14 +7,14 @@ kubectl cluster-info --context kind-infra
 sleep 2
 
 # nginx
-kubectl apply -f _cluster/nginx.yaml
+kubectl apply -f cluster/nginx.yaml
 
 echo "Waiting for ingress to setup"
 sleep 60
 echo "Ingress is ok, continue..."
 
 # argocd
-kubectl create namespace moleculer
 kubectl create namespace argocd
-kubectl apply -n argocd -f _cluster/argocd.yaml
-kubectl apply -n argocd -f _cluster/argocd-ingress.yaml
+kubectl create namespace moleculer
+helm dependency update cluster/argocd
+helm upgrade -n argocd --install argocd cluster/argocd

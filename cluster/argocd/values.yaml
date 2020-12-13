@@ -1,0 +1,29 @@
+argo-cd:
+  server:
+    additionalApplications:
+    - name: moleculer
+      namespace: argocd
+      project: default
+      source:
+        repoURL: "https://github.com/gperreymond/moleculer-data-pipelines.git"
+        targetRevision: main
+        path: applications
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: moleculer
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+    config:
+      url: https://argocd.docker.localhost
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      hosts:
+        - argocd.docker.localhost
