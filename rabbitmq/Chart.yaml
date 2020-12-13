@@ -1,6 +1,6 @@
 apiVersion: v2
-name: infra
-description: All charts for the infra
+name: Rabbitmq
+description: Rabbitmq
 type: application
 
 version: 1.0.0
@@ -9,6 +9,3 @@ dependencies:
   - name: rabbitmq
     version: 8.4.1
     repository: https://charts.bitnami.com/bitnami
-  # - name: flux
-  #   version: 1.6.0
-  #   repository: https://charts.fluxcd.io

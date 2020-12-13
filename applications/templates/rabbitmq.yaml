@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq
+  namespace: argocd
+spec:
+  destination:
+    namespace: moleculer
+    server: https://kubernetes.default.svc
+  project: moleculer
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: rabbitmq
+    repoURL: https://github.com/gperreymond/moleculer-data-pipelines.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml

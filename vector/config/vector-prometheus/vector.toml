@@ -1,0 +1,4 @@
+[sources.prometheus_id]
+  type = "prometheus_scrape" # required
+  endpoints = ["http://infra-rabbitmq-0.default:9419/metrics"] # required
+  scrape_interval_secs = 15 # optional, default, seconds

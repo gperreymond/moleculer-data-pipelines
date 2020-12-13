@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vector-prometheus
+  labels:
+    app: vector-prometheus
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: vector-prometheus
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      labels:
+        app: vector-prometheus
+        version: 1.0.0
+    spec:
+      volumes:
+        - name: vector
+          configMap:
+            name: "vector-prometheus"
+            defaultMode: 0700
+            items:
+            - key: vector
+              path: vector.toml
+      containers:
+        - name: vector-prometheus
+          image: "timberio/vector:0.11.0-debian"
+          imagePullPolicy: Always
+          args:
+            - --config
+            - /etc/vector/vector.toml
+          env:
+            - name: APP_CLUSTER_NAME
+              value: "{{ .Values.clusterName }}"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: etl-vector-config
+                  key: s3_vector_aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: etl-vector-config
+                  key: s3_vector_secret_access_key
+            - name: AWS_DEFAULT_REGION
+              value: {{ .Values.awsRegion }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: vector
+              mountPath: /etc/vector/vector.toml
+              subPath: vector.toml
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
