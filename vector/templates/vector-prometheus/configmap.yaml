@@ -5,4 +5,4 @@ metadata:
   name: "vector-prometheus"
 data:
   vector: |-
-{{ .Files.Get "vector/config/vector-prometheus/vector.toml" | indent 4 }}
+{{ .Files.Get "config/vector-prometheus/vector.toml" | indent 4 }}
