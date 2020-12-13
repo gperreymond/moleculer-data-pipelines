@@ -33,21 +33,6 @@ spec:
           args:
             - --config
             - /etc/vector/vector.toml
-          env:
-            - name: APP_CLUSTER_NAME
-              value: "{{ .Values.clusterName }}"
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: etl-vector-config
-                  key: s3_vector_aws_access_key_id
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: etl-vector-config
-                  key: s3_vector_secret_access_key
-            - name: AWS_DEFAULT_REGION
-              value: {{ .Values.awsRegion }}
           ports:
             - name: http
               containerPort: 80
