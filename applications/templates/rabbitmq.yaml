@@ -8,7 +8,7 @@ spec:
   destination:
     namespace: moleculer
     server: https://kubernetes.default.svc
-  project: moleculer
+  project: default
   syncPolicy:
     automated:
       prune: true
