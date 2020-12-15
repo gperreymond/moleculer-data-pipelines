@@ -7,8 +7,9 @@ kubectl cluster-info --context kind-infra
 sleep 10
 
 # metallb
+kubectl create namespace metallb
 helm dependency update cluster/metallb
-helm upgrade --install metallb cluster/metallb
+helm upgrade --namespace metallb --install metallb cluster/metallb
 
 sleep 10
 
