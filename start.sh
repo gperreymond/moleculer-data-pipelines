@@ -9,12 +9,16 @@ sleep 2
 # nginx
 kubectl apply -f cluster/nginx.yaml
 
-echo "Waiting for ingress to setup"
-sleep 60
-echo "Ingress is ok, continue..."
+echo "waiting for nginx-ingress to setup"
+sleep 180
+echo "nginx-ingress is ok, continue..."
 
 # argocd
 kubectl create namespace argocd
-kubectl create namespace moleculer
 helm dependency update cluster/argocd
 helm upgrade -n argocd --install argocd cluster/argocd
+
+echo "waiting for argocd to setup"
+sleep 60
+echo "argocd is ok, continue..."
+kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2

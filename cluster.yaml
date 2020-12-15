@@ -21,5 +21,9 @@ nodes:
   - containerPort: 5672
     hostPort: 5672
     protocol: TCP
+  # nats
+  - containerPort: 4222
+    hostPort: 4222
+    protocol: TCP
 - role: worker
 - role: worker

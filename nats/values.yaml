@@ -1,0 +1,15 @@
+nats:
+  auth:
+    enabled: true
+    user: admin
+    password: password
+  clusterAuth:
+    enabled: true
+    user: admin
+    password: password
+  metrics:
+    enabled: true
+  ingress:
+    enabled: true
+    hostname: nats.docker.localhost
+    path: /
