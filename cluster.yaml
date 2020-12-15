@@ -8,6 +8,7 @@ nodes:
     nodeRegistration:
       kubeletExtraArgs:
         node-labels: "ingress-ready=true"
+        authorization-mode: "AlwaysAllow"
   extraPortMappings:
   # web
   - containerPort: 80

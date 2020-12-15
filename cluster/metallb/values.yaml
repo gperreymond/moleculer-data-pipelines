@@ -1,0 +1,4 @@
+metallb:
+  controller:
+    nodeSelector:
+      'ingress-ready': "true"

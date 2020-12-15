@@ -15,3 +15,5 @@ lerna-debug.log*
 
 # Programs
 kind
+charts
+Chart.lock
