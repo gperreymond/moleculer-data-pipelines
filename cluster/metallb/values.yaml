@@ -4,7 +4,7 @@ metallb:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.1.240/32
+      - 192.168.1.240-192.168.1.250
   controller:
     tolerations:
     - key: "node-role.kubernetes.io/master"

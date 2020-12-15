@@ -11,6 +11,11 @@ kubectl create namespace metallb
 helm dependency update cluster/metallb
 helm upgrade --namespace metallb --install metallb cluster/metallb
 
+# traefik
+kubectl create ns traefik-v2
+helm dependency update cluster/traefik
+helm upgrade --namespace traefik-v2 --install metallb cluster/traefik
+
 sleep 10
 
 exit 0
