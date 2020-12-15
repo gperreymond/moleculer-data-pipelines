@@ -11,8 +11,6 @@ if (nconf.get('APP_NATS_PORT')) { APP_NATS_PORT = parseInt(nconf.get('APP_NATS_P
 if (nconf.get('APP_RABBITMQ_PORT')) { APP_RABBITMQ_PORT = parseInt(nconf.get('APP_RABBITMQ_PORT')) }
 // ************************************
 
-const APP_PIPELINE_CONFIG = nconf.get('APP_PIPELINE_CONFIG') || './examples/pipeline_001.yaml'
-
 const APP_NATS_HOSTNAME = nconf.get('APP_NATS_HOSTNAME') || 'localhost'
 const APP_NATS_USERNAME = nconf.get('APP_NATS_USERNAME') || 'admin'
 const APP_NATS_PASSWORD = nconf.get('APP_NATS_PASSWORD') || 'password'
@@ -22,7 +20,6 @@ const APP_RABBITMQ_USERNAME = nconf.get('APP_RABBITMQ_USERNAME') || 'admin'
 const APP_RABBITMQ_PASSWORD = nconf.get('APP_RABBITMQ_PASSWORD') || 'password'
 
 module.exports = {
-  pipeline: APP_PIPELINE_CONFIG,
   nats: {
     hostname: APP_NATS_HOSTNAME,
     port: APP_NATS_PORT,

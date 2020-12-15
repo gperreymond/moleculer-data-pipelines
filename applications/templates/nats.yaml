@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nats
+  namespace: argocd
+spec:
+  destination:
+    namespace: moleculer
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: nats
+    repoURL: https://github.com/gperreymond/moleculer-data-pipelines.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
