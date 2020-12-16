@@ -9,6 +9,7 @@
     "test": "jest --coverage --verbose --detectOpenHandles --forceExit"
   },
   "dependencies": {
+    "amqplib": "0.6.0",
     "moleculer": "0.14.11",
     "nats": "1.4.12",
     "nconf": "0.11.0",

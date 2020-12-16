@@ -1,12 +1,13 @@
 ingress-nginx:
+  revisionHistoryLimit: 2
+  tcp:
+    4222: "moleculer/nats-client:4222"
+    5672: "moleculer/rabbitmq:5672"
   controller:
-    extraArgs:
-      enable-ssl-passthrough: ""
     hostPort:
       enabled: true
-      ports:
-        http: 80
-        https: 443
+    extraArgs:
+      enable-ssl-passthrough: ""
     service:
       type: ClusterIP
     tolerations:
