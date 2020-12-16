@@ -6,25 +6,19 @@ kubectl cluster-info --context kind-infra
 
 sleep 10
 
-# metallb
-kubectl create namespace metallb
-helm dependency update cluster/metallb
-helm upgrade --namespace metallb --install metallb cluster/metallb
+# ingress-nginx
+kubectl create ns ingress-nginx
+helm dependency update cluster/ingress-nginx
+helm upgrade --namespace ingress-nginx --install ingress-nginx cluster/ingress-nginx
 
-# traefik
-kubectl create ns traefik-v2
-helm dependency update cluster/traefik
-helm upgrade --namespace traefik-v2 --install metallb cluster/traefik
-
-sleep 10
-
-exit 0
+sleep 60
 
 # argocd
-kubectl create namespace argocd
+kubectl create ns argocd
 helm dependency update cluster/argocd
-helm upgrade -n argocd --install argocd cluster/argocd
+helm upgrade --namespace argocd --install argocd cluster/argocd
 
-sleep 10
-
-kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
+ARGO_ADMIN_PASSWORD=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
+echo "**************************************************************"
+echo "***** argocd admin password: ${ARGO_ADMIN_PASSWORD}"
+echo "**************************************************************"
