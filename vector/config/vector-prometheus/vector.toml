@@ -7,10 +7,33 @@
   type = "metric_to_log"
   inputs = ["prometheus_rabbitmq"]
 
+[sinks.webhook]
+  # General
+  type = "http"
+  inputs = ["metric_to_log"]
+  compression = "none"
+  healthcheck = true
+  uri = "http://192.168.1.29:4000/api/v1/sources/webhook"
+  # Batch
+  batch.max_bytes = 1049000
+  batch.timeout_secs = 1
+  # Encoding
+  encoding.codec = "json"
+  # Headers
+  headers.X-Powered-By = "Vector"
+  # General
+  request.concurrency = 10
+  request.rate_limit_duration_secs = 1
+  request.rate_limit_num = 1000
+  request.retry_attempts = 18446744073709552000
+  request.retry_initial_backoff_secs = 1
+  request.retry_max_duration_secs = 10
+  request.timeout_secs = 30
+
 [sinks.console]
   # General
   type = "console"
-  inputs = ["prometheus_rabbitmq"]
+  inputs = ["metric_to_log"]
   target = "stdout"
 
   # Encoding
