@@ -17,11 +17,13 @@ module.exports = {
         prefetch: 1,
         replyPattern: false
       })
-      await rabbit.createQueue('SourcesDomain.MessageFromVectorReceived.Queue', { durable: true, autoDelete: false }, (message, ack) => {
-        console.log(message.content.toString())
-        ack(null, 'response')
-      })
+      await rabbit.createQueue('SourcesDomain.MessageFromVectorReceived.Queue', { durable: true, autoDelete: false })
       rabbit.bindToExchange('SourcesDomain.MessageFromVectorReceived.Queue', 'amq.topic', 'SourcesDomain.MessageFromVectorReceived.Key')
+      rabbit.subscribe('SourcesDomain.MessageFromVectorReceived.Queue', (message, ack) => {
+        const data = JSON.parse(message.content.toString())
+        console.log(data)
+        ack(null, 'ok')
+      })
       // NATS
       this.NATSConn = NATS.connect(nats.hostname, { json: true, port: nats.port, reconnect: true })
       this.NATSConn.on('connect', () => {
