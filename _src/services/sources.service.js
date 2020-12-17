@@ -1,9 +1,9 @@
+const VectorNatsMixin = require('../mixins/vector-nats-source')
+
 module.exports = {
   name: 'SourcesDomain',
+  mixins: [VectorNatsMixin],
   actions: {
-    ReceiveDataFromWebhookCommand: {
-      handler: require('../domains/sources/commands/ReceiveDataFromWebhookCommand')
-    }
   },
   events: {
   },

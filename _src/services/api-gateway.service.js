@@ -22,7 +22,6 @@ module.exports = {
     routes: [{
       mappingPolicy: 'restrict',
       aliases: {
-        'POST api/v1/sources/webhook': 'SourcesDomain.ReceiveDataFromWebhookCommand'
       }
     }]
   }

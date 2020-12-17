@@ -13,7 +13,7 @@
   inputs = ["metric_to_log"]
   healthcheck = true
   subject = "vector_moleculer"
-  url = "nats://nats-client:4222"
+  url = "nats://nats-headless.moleculer:4222"
   # Encoding
   encoding.codec = "json"
 
