@@ -7,12 +7,12 @@
   type = "metric_to_log"
   inputs = ["prometheus_rabbitmq"]
 
-[sinks.nats]
+[sinks.moleculer]
   # General
   type = "nats" # required
   inputs = ["metric_to_log"]
   healthcheck = true
-  subject = "vector_moleculer"
+  subject = "SinksDomain.MessageToMoleculer.Queue"
   url = "nats://nats-headless.moleculer:4222"
   # Encoding
   encoding.codec = "json"

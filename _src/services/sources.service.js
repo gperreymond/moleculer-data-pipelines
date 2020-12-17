@@ -1,4 +1,4 @@
-const VectorNatsMixin = require('../mixins/vector-nats-source')
+const VectorNatsMixin = require('../mixins/vector-nats-sources')
 
 module.exports = {
   name: 'SourcesDomain',

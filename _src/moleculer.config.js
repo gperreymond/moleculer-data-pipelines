@@ -1,17 +1,14 @@
 const { v4: uuidv4 } = require('uuid')
 
 const { name, version } = require('./package.json')
-const { rabbitmq } = require('./application.config')
-
+const { nats } = require('./application.config')
+console.log(nats.port)
 module.exports = {
   nodeID: `node-${name}-${version}-${uuidv4()}`,
   transporter: {
-    type: 'AMQP',
+    type: 'NATS',
     options: {
-      url: `amqp://${rabbitmq.username}:${rabbitmq.password}@${rabbitmq.hostname}:${rabbitmq.port}`,
-      eventTimeToLive: 5000,
-      prefetch: 1,
-      autoDeleteQueues: true
+      url: `nats://${nats.hostname}:${nats.port}`
     }
   },
   logger: true,
