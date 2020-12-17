@@ -1,12 +1,8 @@
 nats:
   auth:
-    enabled: true
-    user: admin
-    password: password
+    enabled: false
   clusterAuth:
-    enabled: true
-    user: admin
-    password: password
+    enabled: false
   metrics:
     enabled: true
   ingress:
