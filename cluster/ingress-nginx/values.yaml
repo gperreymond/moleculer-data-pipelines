@@ -3,6 +3,7 @@ ingress-nginx:
   tcp:
     4222: "moleculer/nats-client:4222"
     5672: "moleculer/rabbitmq:5672"
+    5432: "moleculer/timescale:5432"
   controller:
     hostPort:
       enabled: true

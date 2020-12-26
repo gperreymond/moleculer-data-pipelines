@@ -1,26 +1,24 @@
-[sources.prometheus_rabbitmq]
-  type = "prometheus_scrape"
-  endpoints = ["http://rabbitmq.moleculer:9419/metrics"]
-  scrape_interval_secs = 30
+[sources.http_id]
+  # General
+  type = "http"
+  address = "0.0.0.0:80"
+  # Encoding
+  encoding = "json"
 
-# [transforms.metric_to_log]
-#   type = "metric_to_log"
-#   inputs = ["prometheus_rabbitmq"]
-
-[sinks.moleculer]
+[sinks.moleculer_id]
   # General
   type = "nats" # required
-  inputs = ["prometheus_rabbitmq"]
+  inputs = ["http_id"]
   healthcheck = true
   subject = "SinksDomain.MessageToMoleculer.Queue"
   url = "nats://nats-headless.moleculer:4222"
   # Encoding
   encoding.codec = "json"
 
-[sinks.console]
+[sinks.console_id]
   # General
   type = "console"
-  inputs = ["prometheus_rabbitmq"]
+  inputs = ["http_id"]
   target = "stdout"
   # Encoding
   encoding.codec = "json"
