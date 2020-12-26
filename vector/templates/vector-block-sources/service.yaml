@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vector-prometheus
+  name: vector-block-sources
 spec:
   type: ClusterIP
   ports:
@@ -10,4 +10,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: vector-prometheus
+    app: vector-block-sources

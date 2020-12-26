@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vector-prometheus
+  name: vector-block-sources
   labels:
-    app: vector-prometheus
+    app: vector-block-sources
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: vector-prometheus
+      app: vector-block-sources
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
       labels:
-        app: vector-prometheus
+        app: vector-block-sources
         version: 1.0.0
     spec:
       volumes:
         - name: vector
           configMap:
-            name: "vector-prometheus"
+            name: "vector-block-sources"
             defaultMode: 0700
             items:
             - key: vector
               path: vector.toml
       containers:
-        - name: vector-prometheus
+        - name: vector-block-sources
           image: "timberio/vector:0.11.0-debian"
           imagePullPolicy: Always
           args:
