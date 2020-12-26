@@ -1,0 +1,13 @@
+apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
+kind: Ingress
+metadata:
+  name: vector-block-sources
+spec:
+  rules:
+    - host: vector.docker.localhost
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: vector-block-sources
+              servicePort: http
