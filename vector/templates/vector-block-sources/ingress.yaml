@@ -9,5 +9,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: vector-block-sources
-              servicePort: http
+              service:
+                name: vector-block-sources
+                port:
+                  number: 80
