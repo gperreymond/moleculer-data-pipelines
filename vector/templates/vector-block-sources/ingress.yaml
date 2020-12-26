@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: vector-block-sources
@@ -9,7 +9,5 @@ spec:
         paths:
           - path: /
             backend:
-              service:
-                name: vector-block-sources
-                port:
-                  number: 80
+              serviceName: vector-block-sources
+              servicePort: 80
